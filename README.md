@@ -8,19 +8,25 @@
 
 ## Project Overview
 
-This project presents an end-to-end retail supply chain analytics and machine learning workflow designed to analyze sales demand, inventory performance, product behavior, pricing, promotions, seasonality, and replenishment risk.
+This project presents an end-to-end retail supply chain analytics and machine learning workflow for analyzing sales demand, inventory performance, product behavior, pricing, promotions, seasonality, and replenishment risk.
 
-The project combines exploratory data analysis, business analytics, ABC-XYZ inventory segmentation, historical inventory risk assessment, machine learning-based demand forecasting, and forecast-driven inventory decision support.
+The project combines:
 
-The primary objective is not only to build a prediction model, but also to demonstrate how retail data can be transformed into useful supply chain insights for inventory planning and decision making.
+- Exploratory and business analytics
+- ABC-XYZ inventory segmentation
+- Historical inventory risk assessment
+- Machine learning-based demand forecasting
+- Forecast benchmarking
+- Forecast-driven inventory decision support
+- Reusable analytical outputs and trained model artifacts
+
+The objective is not only to train a machine learning model, but also to demonstrate how retail data can be transformed into useful supply chain insights and how forecast quality can affect downstream inventory decisions.
 
 > **Dataset Note:** The dataset used in this project is synthetic. Therefore, the findings demonstrate analytical methodology and decision-support techniques rather than the actual performance of a real retail organization.
 
 ---
 
 ## Project Objectives
-
-The project focuses on the following objectives:
 
 - Analyze historical retail sales and demand patterns
 - Evaluate inventory levels and stock availability
@@ -30,13 +36,13 @@ The project focuses on the following objectives:
 - Perform ABC product classification
 - Perform XYZ demand variability classification
 - Build an ABC-XYZ inventory segmentation framework
-- Identify historical shortage, tight-stock, adequate, and excess inventory situations
+- Identify shortage, tight-coverage, adequate, and excess inventory situations
 - Build independent machine learning models for demand forecasting
-- Compare multiple regression models using chronological validation
-- Analyze model errors and forecasting limitations
-- Compare the independently trained model with the dataset-provided demand forecast
-- Evaluate how different forecast sources affect inventory decision support
-- Generate reusable analytical outputs and trained model artifacts
+- Compare regression models using chronological validation
+- Analyze forecast errors and model limitations
+- Compare the independently trained model with the dataset-provided forecast
+- Evaluate how forecast quality influences inventory decision support
+- Export reusable analytical summaries and model artifacts
 
 ---
 
@@ -46,11 +52,10 @@ The project focuses on the following objectives:
 **Source:** Kaggle  
 **Author:** Anirudh Singh Chauhan
 
-Dataset link:
-
+**Dataset Link:**  
 https://www.kaggle.com/datasets/anirudhchauhan/retail-store-inventory-forecasting-dataset
 
-The original dataset contains approximately **73,100 records and 15 columns** covering retail inventory, demand, pricing, promotions, weather, seasonality, stores, products, and regions.
+The original dataset contains **73,100 records and 15 columns** covering retail demand, inventory, pricing, promotions, weather, seasonality, stores, products, and regions.
 
 ### Main Features
 
@@ -66,7 +71,7 @@ The original dataset contains approximately **73,100 records and 15 columns** co
 | Units Ordered      | Replenishment quantity           |
 | Demand Forecast    | Dataset-provided demand forecast |
 | Price              | Product selling price            |
-| Discount           | Discount percentage/value        |
+| Discount           | Discount percentage              |
 | Weather Condition  | Weather category                 |
 | Holiday/Promotion  | Promotion or holiday indicator   |
 | Competitor Pricing | Competitor price                 |
@@ -78,63 +83,135 @@ The original dataset contains approximately **73,100 records and 15 columns** co
 
 ## Data Preparation
 
-The workflow includes data quality checks, date processing, categorical and numerical feature preparation, analytical feature engineering, and chronological model splitting.
+The workflow includes:
 
-The final complete historical analytical period contains **73,000 records from 2022-01-01 through 2023-12-31**.
+- Dataset structure and schema validation
+- Missing-value and duplicate checks
+- Numerical validity checks
+- Date validation
+- Text standardization
+- Business and time feature engineering
+- Leakage-control analysis
+- Chronological model splitting
 
-An additional **100 records dated 2024-01-01** contained incomplete information required by the modeling workflow and were excluded from chronological model evaluation.
+The complete historical analytical period contains:
 
-To reduce potential information leakage:
+**73,000 records from 2022-01-01 through 2023-12-31**
 
-- `Demand Forecast` was excluded from the independent ML feature set because its generation process is undocumented.
-- `Units Ordered` was excluded because replenishment quantities may already contain information derived from previous demand expectations.
+An additional **100 records dated 2024-01-01** were incomplete for the modeling workflow and were excluded from chronological model evaluation.
 
-The dataset-provided `Demand Forecast` is instead evaluated separately as an **external benchmark**.
+### Leakage Control
+
+Two important variables were deliberately excluded from the independent ML feature set:
+
+- `Demand Forecast` — excluded because its generation methodology is undocumented.
+- `Units Ordered` — excluded because replenishment quantities may contain information derived from previous demand expectations.
+
+The dataset-provided `Demand Forecast` is evaluated separately as an **external benchmark**.
 
 ---
 
 ## Analytical Workflow
 
-The project follows the workflow below:
-
-**Data Loading → Data Quality Assessment → Exploratory Data Analysis → Business Analytics → ABC-XYZ Segmentation → Historical Inventory Risk Analysis → Feature Engineering → Chronological ML Training → Model Evaluation → Forecast Benchmark Comparison → Inventory Decision Validation**
+```text
+Data Loading
+    ↓
+Data Quality Assessment
+    ↓
+Data Cleaning & Feature Engineering
+    ↓
+Exploratory & Business Analytics
+    ↓
+ABC-XYZ Inventory Segmentation
+    ↓
+Historical Inventory Risk Analysis
+    ↓
+Machine Learning Dataset Preparation
+    ↓
+Chronological Model Training
+    ↓
+Model Evaluation & Error Analysis
+    ↓
+External Forecast Benchmark
+    ↓
+Forecast-Based Inventory Decision Validation
+    ↓
+Exported Analytics & Model Artifacts
+```
 
 ---
 
-## Exploratory & Business Analytics
+# Exploratory & Business Analytics
 
-The analytical stage investigates:
+The analytical stage investigates demand patterns, product and category performance, stores and regions, inventory, pricing, promotions, competitor pricing, weather, and seasonality.
 
-- Overall sales and demand patterns
-- Product and category performance
-- Store and regional performance
-- Inventory availability
-- Pricing behavior
-- Competitor pricing
-- Discounts and promotions
-- Weather-related demand patterns
-- Seasonal demand patterns
-- Product-level demand variability
-
-The emphasis of the project is primarily on business and supply chain analytics, with machine learning used as an additional forecasting and validation component.
+Machine learning is used as an additional forecasting and validation component rather than replacing the business analytics portion of the project.
 
 ---
 
-## ABC-XYZ Inventory Segmentation
+## Demand Trend Analysis
 
-ABC-XYZ analysis combines product importance with demand variability.
+Daily demand contains considerable short-term variation, while the 30-day moving average remains comparatively stable throughout the complete historical period.
+
+<p align="center">
+  <img src="assets/demand_trend.png" alt="Daily Retail Demand Trend" width="950">
+</p>
+
+<p align="center">
+  <em>Figure 1 — Daily Retail Demand Trend with 30-Day Moving Average</em>
+</p>
+
+Key demand statistics include:
+
+| Metric                    |           Value |
+| ------------------------- | --------------: |
+| Average Daily Demand      | 13,646.49 units |
+| Highest Daily Demand      |    17,239 units |
+| Lowest Daily Demand       |    10,642 units |
+| Highest Full-Demand Month |         2023-07 |
+| Lowest Full-Demand Month  |         2023-02 |
+
+The chart indicates substantial daily variation without an extreme long-term upward or downward demand trend.
+
+---
+
+## Product Category Performance
+
+Estimated net sales are relatively balanced across the five product categories.
+
+<p align="center">
+  <img src="assets/estimated_net_sales_by_category.png" alt="Estimated Net Sales by Product Category" width="850">
+</p>
+
+<p align="center">
+  <em>Figure 2 — Estimated Net Sales by Product Category</em>
+</p>
+
+Furniture records the highest estimated net sales at approximately **$100.2 million**, followed closely by Groceries. Electronics records the lowest at approximately **$97.4 million**.
+
+The relatively narrow differences indicate that no single category overwhelmingly dominates the synthetic dataset.
+
+---
+
+# ABC-XYZ Inventory Segmentation
+
+ABC-XYZ analysis combines product value contribution with demand variability.
 
 ### ABC Classification
 
-Products are classified based on their contribution to cumulative sales value:
+Products are classified using their contribution to **Estimated Net Sales**.
 
-| Class | Number of Products |
-| ----- | -----------------: |
-| A     |                 15 |
-| B     |                  3 |
-| C     |                  2 |
+| ABC Class | Products | Product Share |
+| --------- | -------: | ------------: |
+| A         |       15 |           75% |
+| B         |        3 |           15% |
+| C         |        2 |           10% |
 
-### ABC-XYZ Segments
+### XYZ Classification
+
+XYZ classification represents relative monthly demand variability using coefficient-of-variation-based groups.
+
+### Combined ABC-XYZ Segments
 
 | Segment | Products |
 | ------- | -------: |
@@ -148,51 +225,83 @@ Products are classified based on their contribution to cumulative sales value:
 | CY      |        1 |
 | CZ      |        1 |
 
-This segmentation helps distinguish strategically important and stable products from lower-value or highly variable products.
+<p align="center">
+  <img src="assets/abc_xyz_matrix.png" alt="ABC-XYZ Inventory Segmentation Matrix" width="650">
+</p>
+
+<p align="center">
+  <em>Figure 3 — ABC-XYZ Inventory Segmentation Matrix</em>
+</p>
+
+The matrix provides a structured product-management framework.
+
+For example:
+
+- **AX** products combine high relative value with more stable demand.
+- **AZ** products combine high relative value with greater demand variability.
+- Lower-value segments can generally receive different levels of inventory attention.
+
+These strategies are analytical decision-support guidelines rather than optimized reorder policies.
 
 ---
 
-## Historical Inventory Risk Analysis
+# Historical Inventory Risk Analysis
 
-Historical inventory conditions are classified using the dataset-provided demand forecast and inventory position.
+Historical inventory conditions were evaluated using inventory position, the dataset-provided forecast, and forecast-error uncertainty.
 
-| Inventory Risk | Records |
-| -------------- | ------: |
-| Shortage       |       4 |
-| Tight          |      37 |
-| Adequate       |  22,287 |
-| Excess         |  50,672 |
+### Historical Risk Distribution
 
-The historical analysis indicates that excess inventory represents the dominant inventory condition in this synthetic dataset.
+| Inventory Risk   | Records |  Share |
+| ---------------- | ------: | -----: |
+| Shortage Risk    |       4 |  0.01% |
+| Tight Coverage   |      37 |  0.05% |
+| Adequate         |  22,287 | 30.53% |
+| Excess Inventory |  50,672 | 69.41% |
 
-A global historical safety buffer of approximately **7 units** was also derived from the 90th percentile of forecast error.
+<p align="center">
+  <img src="assets/inventory_risk_distribution.png" alt="Inventory Risk Status Distribution" width="800">
+</p>
+
+<p align="center">
+  <em>Figure 4 — Historical Inventory Risk Status Distribution</em>
+</p>
+
+The analysis indicates that **excess inventory is the dominant historical inventory condition**, representing approximately **69.41%** of complete historical inventory-risk records.
+
+Historical shortage-risk cases are rare in comparison.
+
+> These results are historical decision-support estimates. They are not optimized purchase orders because supplier lead time, ordering cost, holding cost, minimum order quantity, and real business service-level targets are not available in the dataset.
 
 ---
 
-## Machine Learning Approach
+# Machine Learning Approach
 
-Three regression models were evaluated:
+Three regression algorithms were evaluated:
 
-1. Linear Regression
-2. Random Forest Regressor
-3. HistGradientBoosting Regressor
+1. **Linear Regression**
+2. **Random Forest Regressor**
+3. **HistGradientBoosting Regressor**
 
-The target variable is:
+### Target Variable
 
-`Units Sold`
+```text
+Units Sold
+```
 
-A total of **21 model input features** were used before preprocessing:
+### Model Inputs
 
-- 15 numerical features
-- 6 categorical features
+The ML dataset contains:
 
-After preprocessing and categorical encoding, the model matrix contained **57 processed features**.
+- **21 input features before preprocessing**
+- **15 numerical features**
+- **6 categorical features**
+- **57 processed features after preprocessing and encoding**
 
 ---
 
 ## Chronological Train-Test Split
 
-A chronological split was used instead of a random split to provide a more realistic forecasting evaluation.
+A chronological split was used instead of a random split to better represent a forecasting scenario.
 
 | Dataset  | Period                   | Records |
 | -------- | ------------------------ | ------: |
@@ -205,105 +314,145 @@ This prevents future observations from being randomly mixed into the training da
 
 ## Model Performance
 
-### Independently Trained Models
-
 | Model                          |   Test MAE |  Test RMSE |    Test R² |
 | ------------------------------ | ---------: | ---------: | ---------: |
-| Linear Regression              | **68.946** | **87.923** | **0.3390** |
-| Random Forest Regressor        |     70.645 |     89.020 |     0.3224 |
+| **Linear Regression**          | **68.946** | **87.923** | **0.3390** |
 | HistGradientBoosting Regressor |     68.966 |     88.021 |     0.3376 |
+| Random Forest Regressor        |     70.645 |     89.020 |     0.3224 |
 
-Among the independently trained models, **Linear Regression was selected** because it achieved the lowest chronological test MAE and RMSE and showed a very small train-test performance gap.
+### Selected Model
 
-The Random Forest model produced stronger training performance but weaker test performance, indicating greater overfitting.
+**Linear Regression** was selected as the final independently trained model.
+
+It achieved the lowest chronological test MAE and RMSE while showing a very small train-test performance gap.
+
+Random Forest achieved stronger training performance but weaker test performance, indicating greater overfitting.
 
 ---
 
-## External Forecast Benchmark
+## Actual vs Predicted Demand
 
-The dataset also contains a pre-existing `Demand Forecast` field.
+<p align="center">
+  <img src="assets/actual_vs_predicted.png" alt="Actual vs Predicted Daily Average Demand" width="900">
+</p>
 
-For the same chronological test period, the supplied forecast produced:
+<p align="center">
+  <em>Figure 5 — Actual vs Predicted Daily Average Demand for the Selected Linear Regression Model</em>
+</p>
 
-| Forecast Source                       |    MAE |   RMSE |     R² |
-| ------------------------------------- | -----: | -----: | -----: |
-| Selected ML Model — Linear Regression | 68.946 | 87.923 | 0.3390 |
-| Dataset-Provided Demand Forecast      |  8.347 | 10.035 | 0.9914 |
+The figure demonstrates that the baseline model captures some broad variation but tends to smooth demand and does not reproduce high-demand peaks effectively.
+
+---
+
+# External Forecast Benchmark
+
+The source dataset already contains a `Demand Forecast` column.
+
+It was **not used as an ML training feature**.
+
+Instead, it is evaluated as an external benchmark on the same chronological test period.
+
+| Forecast Source                  |    MAE |   RMSE |     R² |
+| -------------------------------- | -----: | -----: | -----: |
+| Selected Linear Regression       | 68.946 | 87.923 | 0.3390 |
+| Dataset-Provided Demand Forecast |  8.347 | 10.035 | 0.9914 |
 
 The supplied forecast performs substantially better numerically.
 
-However, its generation methodology is not documented. Therefore, it is treated as an **external benchmark rather than a model trained by this project**, and the comparison should not be interpreted as a fully like-for-like model competition.
+However, its generation methodology and information availability are undocumented. Therefore, it should **not be interpreted as a leakage-free, like-for-like competitor** to the independently trained project model.
 
 ---
 
-## Model Error Analysis
+# Model Error Analysis
 
-Further error analysis revealed an important limitation of the selected model.
+An important limitation appears when demand is high.
 
-For test observations where actual demand exceeded **300 units**:
+For test observations where:
 
-- Number of records: **911**
-- Average actual units sold: **363.47**
-- Average ML prediction: **213.18**
-- MAE: **150.29**
-- Underforecast rate: **100%**
+```text
+Actual Units Sold >= 300
+```
 
-This shows that the Linear Regression model tends to regress toward the average and substantially underpredict high-demand observations.
+the final analysis produced:
 
-The trained model should therefore be considered a **baseline demand forecasting model**, not a production-ready forecasting system.
+| Metric                | Result |
+| --------------------- | -----: |
+| High-Demand Records   |    924 |
+| Average Actual Demand | 362.58 |
+| Average ML Forecast   | 212.78 |
+| ML MAE                | 149.80 |
+| ML Underforecast Rate |   100% |
+
+The selected Linear Regression model therefore tends to regress toward the average and substantially underpredict high-demand observations.
+
+The model should be considered a **baseline forecasting model rather than a production-ready demand forecasting system**.
 
 ---
 
-## Inventory Decision-Support Validation
+# Forecast Impact on Inventory Decisions
 
-Forecast quality was also evaluated from an inventory decision perspective.
+Forecasting performance was also evaluated from an operational inventory perspective.
+
+Both forecast sources were applied to the **same 9,200 test records using the same inventory position, safety-buffer logic, risk thresholds, and decision rules**.
 
 ### Test-Period Inventory Risk
 
-| Risk Level | Supplied Forecast | ML Forecast |
-| ---------- | ----------------: | ----------: |
-| Shortage   |                 0 |           0 |
-| Tight      |               308 |           0 |
-| Adequate   |             2,502 |           0 |
-| Excess     |             6,390 |       9,200 |
+| Risk Level       | Supplied Forecast | ML Forecast |
+| ---------------- | ----------------: | ----------: |
+| Shortage Risk    |                 0 |           0 |
+| Tight Coverage   |               308 |           0 |
+| Adequate         |             2,502 |           0 |
+| Excess Inventory |             6,390 |       9,200 |
 
-The independently trained ML model classified all test observations as excess inventory under the project decision rules.
+The independently trained ML model classified all 9,200 test observations as excess inventory under the comparison rules.
 
-This result demonstrates an important supply chain lesson: **forecasting performance must be evaluated not only using statistical metrics, but also by examining its downstream operational decisions.**
+### Replenishment Impact
 
-Because the baseline ML model underpredicts high demand and produces unrealistic inventory-risk behavior, the historical inventory analysis remains the primary source for inventory insights in this project.
+Neither forecast source produced a positive replenishment requirement during the October–December 2023 test period under the common decision rules.
 
----
+This demonstrates an important supply-chain principle:
 
-## Feature Influence
+> **Forecast quality should be validated not only using statistical accuracy metrics, but also through the operational decisions produced by the forecast.**
 
-Linear Regression coefficient analysis was used to inspect model feature influence.
-
-The strongest coefficient by absolute magnitude was associated with the engineered:
-
-`Competitor_Price_Ratio`
-
-with a coefficient of approximately:
-
-`-4.1695`
-
-This represents a model association and should **not** be interpreted as evidence of a causal relationship.
+Because the baseline ML model exhibits substantial high-demand underforecasting and unrealistic downstream inventory-risk behavior, the historical inventory analysis remains the primary source for inventory insights in this project.
 
 ---
 
-## Why LSTM Was Not Used
+# Feature Influence
+
+Linear Regression coefficient analysis was used as a model-interpretation tool.
+
+The strongest coefficient by absolute magnitude was associated with the engineered feature:
+
+```text
+Competitor_Price_Ratio
+```
+
+Approximate coefficient:
+
+```text
+-4.1695
+```
+
+This is a model association and should **not be interpreted as evidence of causality**.
+
+---
+
+# Why LSTM Was Not Used
 
 LSTM was considered but deliberately excluded from the final modeling workflow.
 
-The current project uses structured daily retail records without a dedicated lagged sequence architecture. Classical machine learning models provide a clearer and more appropriate baseline for the current internship scope.
+The current project uses structured daily retail records without a dedicated lagged sequence architecture.
 
-A future version could build product-store level time-series sequences with lag features, rolling statistics, and dedicated forecasting models before evaluating LSTM or other deep-learning approaches.
+Using LSTM without first creating appropriate product-store sequences, lag features, rolling statistics, and forecasting windows would add complexity without providing a sound comparison.
+
+A future version could develop a dedicated sequential forecasting pipeline before evaluating LSTM or other deep-learning methods.
 
 ---
 
-## Project Architecture
+# Project Architecture
 
-The final project contains six major analytical components:
+The project is organized around six major analytical components:
 
 1. Exploratory Data Analysis
 2. ABC-XYZ Inventory Segmentation
@@ -314,88 +463,130 @@ The final project contains six major analytical components:
 
 ---
 
-## Repository Structure
+# Repository Structure
 
 ```text
 smart-retail-supply-chain/
+│
+├── assets/
+│   ├── abc_xyz_matrix.png
+│   ├── actual_vs_predicted.png
+│   ├── demand_trend.png
+│   ├── estimated_net_sales_by_category.png
+│   └── inventory_risk_distribution.png
 │
 ├── data/
 │   └── retail_cleaned_data.csv
 │
 ├── model/
 │   ├── linear_regression_model.joblib
+│   ├── model_metadata.json
 │   ├── preprocessor.joblib
-│   ├── retail_demand_model_bundle.joblib
 │   ├── processed_feature_names.csv
-│   └── model_metadata.json
+│   └── retail_demand_model_bundle.joblib
 │
 ├── outputs/
-│   ├── executive_kpis.csv
+│   ├── abc_executive_summary.csv
 │   ├── abc_xyz_product_segmentation.csv
-│   ├── historical_inventory_risk_summary.csv
+│   ├── abc_xyz_segment_summary.csv
+│   ├── executive_kpis.csv
+│   ├── export_manifest.csv
+│   ├── final_project_architecture.csv
+│   ├── final_project_findings.csv
 │   ├── forecast_accuracy_comparison.csv
-│   ├── ml_test_predictions_and_errors.csv
-│   └── additional analytical outputs
+│   ├── forecast_inventory_risk_comparison.csv
+│   ├── forecast_replenishment_comparison.csv
+│   ├── historical_inventory_kpis.csv
+│   ├── historical_inventory_risk_summary.csv
+│   ├── linear_regression_feature_influence.csv
+│   ├── priority_shortage_records.csv
+│   └── product_inventory_risk_summary.csv
 │
 ├── src/
 │   └── test_model.py
 │
-├── SayanGhorai_SmartRetailSupplyChain.ipynb
-├── requirements.txt
+├── .gitignore
 ├── README.md
-└── .gitignore
+├── requirements.txt
+└── SayanGhorai_SmartRetailSupplyChain.ipynb
 ```
 
 ---
 
-## Generated Analytical Outputs
+# Generated Analytical Outputs
 
-The notebook exports reusable analytical results including:
+The completed notebook exports reusable analytical assets covering:
 
-- Executive KPI summary
-- ABC classification summary
-- ABC-XYZ product segmentation
-- ABC-XYZ segment summary
-- Historical inventory KPIs
-- Historical inventory risk records
-- Historical inventory risk summary
-- Product inventory risk summary
-- Priority shortage records
-- ML test predictions and errors
+- Executive KPIs
+- ABC classification
+- ABC-XYZ segmentation
+- Historical inventory-risk analysis
+- Product-level inventory risk
+- Priority shortage cases
 - Forecast accuracy comparison
 - Forecast inventory-risk comparison
 - Forecast replenishment comparison
-- Forecast decision-support comparison
 - Linear Regression feature influence
 - Final project findings
 - Final project architecture
 - Export manifest
 
-These files allow the analysis to be reused for reporting, validation, and future dashboard development.
+Three larger row-level reproducible outputs are generated locally but intentionally excluded from GitHub through `.gitignore`:
+
+```text
+outputs/historical_inventory_risk.csv
+outputs/forecast_decision_support_comparison.csv
+outputs/ml_test_predictions_and_errors.csv
+```
+
+They can be regenerated by running the completed notebook.
 
 ---
 
-## Saved Model Artifacts
+# Saved Model Artifacts
 
-The selected model and preprocessing pipeline are exported to the `model/` directory.
+The selected trained model and preprocessing pipeline are stored in the `model/` directory.
 
-The primary deployment artifact is:
+Primary model bundle:
 
 ```text
 model/retail_demand_model_bundle.joblib
 ```
 
-The saved model package includes the trained Linear Regression model and preprocessing components required to reproduce predictions.
+Additional artifacts include:
 
-A portability test script is included in:
+```text
+model/linear_regression_model.joblib
+model/preprocessor.joblib
+model/processed_feature_names.csv
+model/model_metadata.json
+```
+
+---
+
+## Model Portability Validation
+
+The repository includes:
 
 ```text
 src/test_model.py
 ```
 
+This script loads the cleaned dataset and saved model artifacts independently from the training notebook.
+
+The final local validation reproduced the notebook results on **9,200 test records**:
+
+```text
+MAE  : 68.946
+RMSE : 87.923
+R²   : 0.3390
+```
+
+The portability test confirms that the saved model package works independently from the original training notebook.
+
 ---
 
-## Technologies Used
+# Technologies Used
 
 - Python 3.12
 - Pandas
@@ -412,7 +603,7 @@ src/test_model.py
 
 ---
 
-## Installation
+# Installation
 
 Clone the repository:
 
@@ -427,13 +618,13 @@ Create a virtual environment:
 python -m venv .venv
 ```
 
-Activate it on Windows:
+Activate the environment on Windows PowerShell:
 
 ```powershell
 .venv\Scripts\Activate.ps1
 ```
 
-Install the required dependencies:
+Install the required packages:
 
 ```bash
 pip install -r requirements.txt
@@ -441,17 +632,17 @@ pip install -r requirements.txt
 
 ---
 
-## Running the Project
+# Running the Project
 
-Open:
+Open the notebook:
 
 ```text
 SayanGhorai_SmartRetailSupplyChain.ipynb
 ```
 
-Run the notebook cells sequentially to reproduce the analytical workflow.
+Run the notebook cells sequentially to reproduce the complete analytical workflow.
 
-To validate the saved machine learning model package:
+To validate the exported machine learning model package independently:
 
 ```bash
 python src/test_model.py
@@ -459,9 +650,9 @@ python src/test_model.py
 
 ---
 
-## Requirements
+# Requirements
 
-The project dependencies are defined in `requirements.txt`:
+The reproducible Python environment is defined in `requirements.txt`:
 
 ```text
 pandas==2.3.3
@@ -474,71 +665,66 @@ Jinja2==3.1.6
 
 ---
 
-## Key Conclusions
+# Key Conclusions
 
-The project demonstrates that retail supply chain analysis benefits from combining descriptive analytics, inventory segmentation, forecasting, and operational validation.
+The project demonstrates that supply chain analytics benefits from combining descriptive analytics, product segmentation, demand forecasting, and operational validation.
 
-The main findings include:
+Key conclusions include:
 
-- ABC-XYZ segmentation provides a structured method for prioritizing inventory management.
-- Historical inventory analysis identified excess inventory as the dominant condition in the synthetic dataset.
-- Chronological validation provides a more realistic evaluation than random train-test splitting for time-dependent retail data.
-- Linear Regression provided the best generalization among the independently trained models evaluated.
-- The selected baseline ML model has significant limitations for high-demand observations.
-- The dataset-provided forecast performs much better statistically but cannot be treated as an independently trained project model because its generation methodology is undocumented.
-- Forecast models should be evaluated using both statistical accuracy and their downstream inventory decisions.
-- High forecast accuracy alone is not sufficient unless the resulting operational recommendations are also reasonable.
+- ABC-XYZ segmentation provides a structured framework for prioritizing inventory attention.
+- Historical analysis identified excess inventory as the dominant inventory condition in the synthetic dataset.
+- Chronological validation provides a more realistic forecasting assessment than randomly mixing past and future observations.
+- Linear Regression provided the strongest chronological test performance among the independently trained models evaluated.
+- The selected baseline ML model has significant limitations when forecasting high-demand observations.
+- The dataset-provided forecast performs substantially better statistically, but its generation methodology is undocumented.
+- Statistical forecast accuracy and operational inventory consequences should both be evaluated.
+- A model that performs acceptably on average may still generate unsuitable downstream decisions.
 
 ---
 
-## Limitations
+# Limitations
 
 This project has several important limitations:
 
 - The dataset is synthetic and does not represent a real retailer.
-- The generation process of the supplied demand forecast is undocumented.
-- The independent ML models do not use dedicated lagged time-series sequences.
-- Linear Regression underpredicts high-demand observations.
-- Model coefficients represent statistical associations and not causal effects.
-- Inventory decision rules are analytical approximations and are not optimized against real-world service levels, supplier lead times, or business costs.
+- The generation methodology of the supplied `Demand Forecast` is undocumented.
+- Independent ML models do not use dedicated lagged product-store time-series sequences.
+- Linear Regression substantially underpredicts high-demand observations.
+- Model coefficients represent statistical associations rather than causal effects.
+- Inventory decision rules are analytical approximations.
+- Supplier lead times, holding costs, ordering costs, minimum order quantities, and real service-level requirements are unavailable.
 
 ---
 
-## Future Improvements
+# Future Improvements
 
-Potential future extensions include:
+Potential extensions include:
 
 - Lag-based demand features
 - Rolling demand statistics
 - Product-store level forecasting models
 - Time-series cross-validation
 - XGBoost or LightGBM comparison
-- Dedicated time-series models
-- LSTM or sequence-based deep learning after appropriate sequence preparation
-- Dynamic safety-stock calculations
+- Dedicated statistical time-series models
+- LSTM or sequence models after proper sequence preparation
+- Dynamic safety-stock calculation
 - Supplier lead-time integration
 - Service-level optimization
 - Interactive Streamlit dashboard
-- Automated inventory alerts and replenishment recommendations
+- Automated inventory alerts
+- Replenishment recommendation workflows
 
 ---
 
-## Internship Submission
+# Project Context
 
-This project was developed as part of the:
+This project was developed as part of the **AICTE | IBM SkillsBuild Data Analytics with AI Internship Program — BharatCares**.
 
-**AICTE | IBM SkillsBuild Data Analytics with AI Internship Program — BharatCares**
-
-The submission package includes:
-
-- Jupyter Notebook
-- Requirements File
-- Project Report
-- README Documentation
+The repository documents the complete analytics, machine learning, validation, reproducibility, and decision-support workflow developed for the internship project.
 
 ---
 
-## Author
+# Author
 
 **Sayan Ghorai**
 
@@ -546,7 +732,7 @@ AICTE | IBM SkillsBuild Data Analytics with AI Internship Project
 
 ---
 
-## Disclaimer
+# Disclaimer
 
 This project is intended for educational and analytical demonstration purposes.
 
