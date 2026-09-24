@@ -1,0 +1,30 @@
+{
+    "project_name": "Smart Retail Supply Chain Analytics",
+    "model_name": "Linear Regression",
+    "target": "Units Sold",
+    "training_strategy": "Chronological train-test split",
+    "training_period": "2022-01-01 to 2023-09-30",
+    "test_period": "2023-10-01 to 2023-12-31",
+    "training_records": 63800,
+    "test_records": 9200,
+    "original_feature_count": 21,
+    "processed_feature_count": 57,
+    "test_mae": 68.94605786580028,
+    "test_rmse": 87.92279180911719,
+    "test_r2": 0.3390337450932861,
+    "excluded_features": [
+        "Date",
+        "Units Sold",
+        "Demand Forecast",
+        "Units Ordered"
+    ],
+    "demand_forecast_usage": "Excluded from ML training and retained as an external benchmark.",
+    "units_ordered_usage": "Excluded from ML inputs because replenishment decisions may encode prior demand expectations.",
+    "deployment_note": "The independently trained model demonstrated substantial high-demand underprediction. Forecast validation is required before using predictions for operational replenishment.",
+    "python_package_versions": {
+        "pandas": "2.3.3",
+        "numpy": "2.0.2",
+        "scikit_learn": "1.6.1",
+        "joblib": "1.5.3"
+    }
+}
