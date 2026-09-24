@@ -508,6 +508,7 @@ smart-retail-supply-chain/
 ├── .gitignore
 ├── README.md
 ├── requirements.txt
+├── SayanGhorai_ProjectReport.docx
 └── SayanGhorai_SmartRetailSupplyChain.ipynb
 ```
 
