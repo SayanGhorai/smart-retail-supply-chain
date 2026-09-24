@@ -1,0 +1,58 @@
+Feature,Coefficient,Absolute_Coefficient,Direction,Feature_Clean
+numeric__Inventory Level,0.49608984328419153,0.49608984328419153,Positive,Inventory Level
+numeric__Price,0.116426901052517,0.116426901052517,Positive,Price
+numeric__Discount,-0.1161916794588264,0.1161916794588264,Negative,Discount
+numeric__Competitor Pricing,0.028064237422901206,0.028064237422901206,Positive,Competitor Pricing
+numeric__Holiday/Promotion,-0.36633787948128826,0.36633787948128826,Negative,Holiday/Promotion
+numeric__Year,-0.47229245379735285,0.47229245379735285,Negative,Year
+numeric__Month,-1.0485856612150182,1.0485856612150182,Negative,Month
+numeric__Day,-0.0030204893254472953,0.0030204893254472953,Negative,Day
+numeric__Day_of_Week,0.2610944177893049,0.2610944177893049,Positive,Day_of_Week
+numeric__Week_of_Year,0.09807924499543941,0.09807924499543941,Positive,Week_of_Year
+numeric__Quarter,1.7451164469983014,1.7451164469983014,Positive,Quarter
+numeric__Is_Weekend,-1.865173754169976,1.865173754169976,Negative,Is_Weekend
+numeric__Effective_Price,-0.18810576131447165,0.18810576131447165,Negative,Effective_Price
+numeric__Competitor_Price_Gap,0.08836266362961576,0.08836266362961576,Positive,Competitor_Price_Gap
+numeric__Competitor_Price_Ratio,-4.169517766748964,4.169517766748964,Negative,Competitor_Price_Ratio
+categorical__Store ID_S001,-0.7780062535161854,0.7780062535161854,Negative,Store ID_S001
+categorical__Store ID_S002,-0.05606003335421483,0.05606003335421483,Negative,Store ID_S002
+categorical__Store ID_S003,0.4222847679252397,0.4222847679252397,Positive,Store ID_S003
+categorical__Store ID_S004,0.2119744452309943,0.2119744452309943,Positive,Store ID_S004
+categorical__Store ID_S005,0.19980707371415773,0.19980707371415773,Positive,Store ID_S005
+categorical__Product ID_P0001,0.6413082517725723,0.6413082517725723,Positive,Product ID_P0001
+categorical__Product ID_P0002,-0.6867535494608524,0.6867535494608524,Negative,Product ID_P0002
+categorical__Product ID_P0003,-1.5010083870343296,1.5010083870343296,Negative,Product ID_P0003
+categorical__Product ID_P0004,0.6945020098421057,0.6945020098421057,Positive,Product ID_P0004
+categorical__Product ID_P0005,2.0629486280807,2.0629486280807,Positive,Product ID_P0005
+categorical__Product ID_P0006,0.20963127020371197,0.20963127020371197,Positive,Product ID_P0006
+categorical__Product ID_P0007,0.6689444346315894,0.6689444346315894,Positive,Product ID_P0007
+categorical__Product ID_P0008,-2.436009611158106,2.436009611158106,Negative,Product ID_P0008
+categorical__Product ID_P0009,0.22130245215930736,0.22130245215930736,Positive,Product ID_P0009
+categorical__Product ID_P0010,-1.1568990407538653,1.1568990407538653,Negative,Product ID_P0010
+categorical__Product ID_P0011,-0.515227417495268,0.515227417495268,Negative,Product ID_P0011
+categorical__Product ID_P0012,-0.10332653426189387,0.10332653426189387,Negative,Product ID_P0012
+categorical__Product ID_P0013,0.6244901433974234,0.6244901433974234,Positive,Product ID_P0013
+categorical__Product ID_P0014,0.8532442653615842,0.8532442653615842,Positive,Product ID_P0014
+categorical__Product ID_P0015,1.747728355520715,1.747728355520715,Positive,Product ID_P0015
+categorical__Product ID_P0016,0.804832636270485,0.804832636270485,Positive,Product ID_P0016
+categorical__Product ID_P0017,-2.6565619298360805,2.6565619298360805,Negative,Product ID_P0017
+categorical__Product ID_P0018,-0.8827744677327662,0.8827744677327662,Negative,Product ID_P0018
+categorical__Product ID_P0019,0.37161196769195587,0.37161196769195587,Positive,Product ID_P0019
+categorical__Product ID_P0020,1.0380165228010239,1.0380165228010239,Positive,Product ID_P0020
+categorical__Category_Clothing,0.4253272070516035,0.4253272070516035,Positive,Category_Clothing
+categorical__Category_Electronics,-0.6208560422992097,0.6208560422992097,Negative,Category_Electronics
+categorical__Category_Furniture,0.1667099520536502,0.1667099520536502,Positive,Category_Furniture
+categorical__Category_Groceries,0.15634138265782904,0.15634138265782904,Positive,Category_Groceries
+categorical__Category_Toys,-0.1275224994638694,0.1275224994638694,Negative,Category_Toys
+categorical__Region_East,0.12633441211421736,0.12633441211421736,Positive,Region_East
+categorical__Region_North,-0.2998378503086564,0.2998378503086564,Negative,Region_North
+categorical__Region_South,0.17202887653421284,0.17202887653421284,Positive,Region_South
+categorical__Region_West,0.0014745616602234723,0.0014745616602234723,Positive,Region_West
+categorical__Weather Condition_Cloudy,0.019234870078085664,0.019234870078085664,Positive,Weather Condition_Cloudy
+categorical__Weather Condition_Rainy,-1.139738349341359,1.139738349341359,Negative,Weather Condition_Rainy
+categorical__Weather Condition_Snowy,0.1115844826008685,0.1115844826008685,Positive,Weather Condition_Snowy
+categorical__Weather Condition_Sunny,1.0089189966624073,1.0089189966624073,Positive,Weather Condition_Sunny
+categorical__Seasonality_Autumn,0.361662735561715,0.361662735561715,Positive,Seasonality_Autumn
+categorical__Seasonality_Spring,-0.6242132109780555,0.6242132109780555,Negative,Seasonality_Spring
+categorical__Seasonality_Summer,-0.23867066709285764,0.23867066709285764,Negative,Seasonality_Summer
+categorical__Seasonality_Winter,0.5012211425092017,0.5012211425092017,Positive,Seasonality_Winter

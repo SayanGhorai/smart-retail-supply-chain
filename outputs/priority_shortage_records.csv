@@ -1,0 +1,5 @@
+Date,Store ID,Product ID,Category,Region,Inventory Level,Units Ordered,Inventory_Position,Clipped_Forecast,Safety_Buffer,Risk_Adjusted_Demand,Inventory_Gap,Recommended_Replenishment
+2022-08-24,S002,P0008,Clothing,South,115,20,135,130.82,7,137.82,-2.819999999999993,3
+2022-02-23,S004,P0019,Toys,East,391,22,413,406.99,8,414.99,-1.990000000000009,2
+2022-04-30,S002,P0009,Clothing,East,107,22,129,123.26,7,130.26,-1.259999999999991,2
+2023-04-18,S003,P0016,Electronics,West,399,20,419,411.98,8,419.98,-0.9800000000000182,1

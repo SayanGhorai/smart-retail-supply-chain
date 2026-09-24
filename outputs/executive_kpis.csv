@@ -1,0 +1,24 @@
+KPI,Value
+Source Dataset Records,"73,100"
+Source Data Start Date,2022-01-01
+Source Data End Date,2024-01-01
+Complete Historical Analysis Records,"73,000"
+Historical Analysis Start Date,2022-01-01
+Historical Analysis End Date,2023-12-31
+Stores,5
+Products,20
+Categories,5
+Total Units Sold,"9,975,582"
+Average Units Sold per Record,136.46
+Average Inventory Level,274.47
+Historical Shortage-Risk Records,4
+Historical Tight-Coverage Records,37
+Historical Adequate Records,"22,287"
+Historical Excess-Inventory Records,"50,672"
+ML Test Records,"9,200"
+ML Test Start Date,2023-10-01
+ML Test End Date,2023-12-31
+Linear Regression Test MAE,68.946
+Linear Regression Test RMSE,87.923
+Supplied Forecast Test MAE,8.347
+Supplied Forecast Test RMSE,10.035

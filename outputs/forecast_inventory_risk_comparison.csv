@@ -1,0 +1,5 @@
+Risk_Status,Supplied_Forecast_Records,ML_Forecast_Records,Supplied_Share_%,ML_Share_%
+Shortage Risk,0,0,0.0,0.0
+Tight Coverage,308,0,3.3478260869565215,0.0
+Adequate,2502,0,27.195652173913043,0.0
+Excess Inventory,6390,9200,69.45652173913044,100.0

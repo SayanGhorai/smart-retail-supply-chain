@@ -1,0 +1,8 @@
+Finding_Area,Finding
+Independent ML Model,Linear Regression achieved MAE 68.946 and RMSE 87.923 on the chronological Oct-Dec 2023 test period.
+External Forecast Benchmark,"The supplied Demand Forecast achieved MAE 8.347 and RMSE 10.035 on the same test records, but its generation methodology is undocumented."
+High-Demand Limitation,"For 924 records with actual demand >= 300 units, average actual demand was 362.58, supplied forecast was 367.51, and ML forecast was 212.78."
+Test-Period Inventory,"Using the supplied forecast with common coverage rules produced 6,390 excess, 2,502 adequate, 308 tight-coverage, and 0 shortage-risk records during the ML test period."
+Replenishment,Neither forecast source generated a positive replenishment requirement during the Oct-Dec 2023 test period under the common decision rules.
+ABC-XYZ Role,ABC-XYZ segmentation is retained as a product management and prioritization framework rather than being used to artificially alter forecasts.
+Decision-Support Principle,Forecast accuracy must be validated before a forecast is used to drive inventory decisions; model development and operational deployment are treated as separate stages.

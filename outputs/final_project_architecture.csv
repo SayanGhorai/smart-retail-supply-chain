@@ -1,0 +1,7 @@
+Project_Component,Primary_Purpose,Primary_Output
+Exploratory Analytics,"Understand sales, inventory, pricing and operational patterns",Business insights and visualizations
+ABC-XYZ Segmentation,Prioritize products by value and demand variability,ABC-XYZ product segments
+Historical Inventory Risk,"Identify shortage, tight, adequate and excess inventory conditions",Inventory risk and replenishment analysis
+Independent ML Forecasting,Train and evaluate a leakage-controlled demand prediction model,Linear Regression final model with evaluation metrics
+External Forecast Benchmark,Compare against the dataset-provided Demand Forecast,External benchmark performance
+Forecast Decision Validation,Test whether forecast quality is suitable for inventory decisions,Operational forecast-risk comparison
